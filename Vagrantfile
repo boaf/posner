@@ -27,9 +27,6 @@ Vagrant.configure("2") do |config|
     end
     config.vm.synced_folder "www/", "/srv/www/", :owner => "www-data", :extra => 'dmode=775,fmode=774'
 
-    config.vm.provision :shell do |s|
-        s.path = "setup/setup.sh $1"
-        s.args = devhost
-    end
+    config.vm.provision :shell, :path => "setup/setup.sh", :args => devhost
 
 end

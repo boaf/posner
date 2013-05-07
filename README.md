@@ -10,12 +10,12 @@ A pretty basic Vagrant box running the following:
 * WordPress
 
 In addition, the following features are planned (Soon&trade;):
-* [HTML5 Boilerplate][http://html5boilerplate.com/]
-* [Roots Theme][http://rootstheme.com]
+* [HTML5 Boilerplate](http://html5boilerplate.com/)
+* [Roots Theme](http://rootstheme.com)
 
 ## Let's get started
 
-1. Install [VirtualBox][https://www.virtualbox.org/wiki/Downloads] and [Vagrant][http://downloads.vagrantup.com/].
+1. Install [VirtualBox](https://www.virtualbox.org/wiki/Downloads) and [Vagrant](http://downloads.vagrantup.com/).
 2. `git clone git://github.com/boaf/posner.git new-wp-project && cd new-wp-project`
 3. (optional) Modify `devhost` at the top of `Vagrantfile` for a custom hostname
 4. `vagrant up`
@@ -32,4 +32,4 @@ It's possible to garner a pretty large list of running VMs if you remove directo
 
 ## Thanks
 
-Thanks to the folks at 10up, for providing [Varying Vagrant Vagrants][https://github.com/10up/varying-vagrant/vagrants] (most of which this repo is based on). No copyright infringement intended!
+Thanks to the folks at 10up, for providing [Varying Vagrant Vagrants](https://github.com/10up/varying-vagrant/vagrants) (most of which this repo is based on). No copyright infringement intended!

@@ -11,12 +11,12 @@ A pretty basic Vagrant box running the following:
 
 1. Install [VirtualBox][5] and [Vagrant][6].
 
-2. `$ git clone https://boaf@bitbucket.org/boaf/posner.git my-sweetass-site`
+2. `git clone https://boaf@bitbucket.org/boaf/posner.git my-sweetass-site`
 
-3. `$ cd my-sweetass-site`
+3. `cd my-sweetass-site`
     a. OPTIONAL: Modify `devhost` at the top of `Vagrantfile` for custom hostname
 
-4. `$ vagrant up`
+4. `vagrant up`
 
 5. Add `10.10.10.10 dev.local` to your `/etc/hosts` file (location may vary)
 
@@ -24,7 +24,11 @@ A pretty basic Vagrant box running the following:
 
 ## When you're finished for the day
 
-`$ vagrant halt` (bring it back up with `vagrant up`)
+`vagrant halt` (bring it back up with `vagrant up`)
+
+## Some other things
+
+It's possible to garner a pretty large list of running VMs if you remove directories without first running `vagrant destroy`, so it's a good idea to sometimes run `vboxmanage list vms` or `vboxmanage list runningvms` to see where you're at. Again, keep in mind that your VMs will not be removed until you run `vagrant destroy` (in the vagrant working directory) or manually delete the VM from VirtualBox (former method preferred).
 
 ## Thanks
 

@@ -2,16 +2,20 @@
 
 A pretty basic Vagrant box running the following:
 
-* LEMP stack ([nginx][1])
-* [WordPress][2]
+* LEMP stack
+  * Ubuntu 12.04 LTS 32-bit
+  * nginx
+  * MySQL
+  * PHP
+* WordPress
 
 In addition, the following features are planned (Soon&trade;):
-* [HTML5 Boilerplate][3]
-* [Roots Theme][4]
+* [HTML5 Boilerplate][http://html5boilerplate.com/]
+* [Roots Theme][http://rootstheme.com]
 
 ## Let's get started
 
-1. Install [VirtualBox][5] and [Vagrant][6].
+1. Install [VirtualBox][https://www.virtualbox.org/wiki/Downloads] and [Vagrant][http://downloads.vagrantup.com/].
 2. `git clone git://github.com/boaf/posner.git new-wp-project && cd new-wp-project`
 3. (optional) Modify `devhost` at the top of `Vagrantfile` for a custom hostname
 4. `vagrant up`
@@ -28,12 +32,4 @@ It's possible to garner a pretty large list of running VMs if you remove directo
 
 ## Thanks
 
-Thanks to the folks at 10up, for providing [Varying Vagrant Vagrants][7] (most of which this repo is based on). No copyright infringement intended!
-
-[1]: http://nginx.org/ "nginx"
-[2]: http://wordpress.org/ "WordPress"
-[3]: http://html5boilerplate.com/ "HTML5 Boilerplate"
-[4]: http://rootstheme.com/ "Roots WordPress Theme"
-[5]: https://www.virtualbox.org/wiki/Downloads "VirtualBox"
-[6]: http://downloads.vagrantup.com "Vagrant"
-[7]: https://github.com/10up/varying-vagrant-vagrants "Varying Vagrant Vagrants"
+Thanks to the folks at 10up, for providing [Varying Vagrant Vagrants][https://github.com/10up/varying-vagrant/vagrants] (most of which this repo is based on). No copyright infringement intended!

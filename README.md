@@ -14,9 +14,6 @@ In addition, the following features are planned (Soon&trade;):
 1. Install [VirtualBox][5] and [Vagrant][6].
 2. `git clone git://github.com/boaf/posner.git new-wp-project && cd new-wp-project`
 3. (optional) Modify `devhost` at the top of `Vagrantfile` for a custom hostname
-```ruby
-devhost = "fresh-ass-hostname.local"
-```
 4. `vagrant up`
 5. Add `10.10.10.10 dev.local` to your `/etc/hosts` file (location may vary)
 6. Visit `http://dev.local/` (or your custom `devhost`, if specified) in yo browser.

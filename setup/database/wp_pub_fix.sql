@@ -1,1 +1,1 @@
-UPDATE `wordpress`.`wp_options` SET `option_value` = 1 WHERE `option_name` = 'blog_public';
+UPDATE `wordpress`.`wp_options` SET `option_value` = 0 WHERE `option_name` = 'blog_public';

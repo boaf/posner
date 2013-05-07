@@ -9,16 +9,14 @@ In addition, the following features are planned (Soon&trade;):
 * [HTML5 Boilerplate][3]
 * [Roots Theme][4]
 
-## What?
-
-The idea is that you `checkout` (not `clone`!) to a new directory, creating a fresh Vagrant box with WordPress for developing a theme. From there, it's recommended you `git init` to track your changes (and make the move to product that much easier when its time).
-
 ## Let's get started
 
 1. Install [VirtualBox][5] and [Vagrant][6].
-2. `git clone https://boaf@bitbucket.org/boaf/posner.git my-sweetass-site`
-3. `cd my-sweetass-site`
-    * (OPTIONAL) Modify `devhost` at the top of `Vagrantfile` for custom hostname
+2. `git clone git://github.com/boaf/posner.git new-wp-project && cd new-wp-project`
+3. (optional) Modify `devhost` at the top of `Vagrantfile` for a custom hostname
+```ruby
+devhost = "fresh-ass-hostname.local"
+```
 4. `vagrant up`
 5. Add `10.10.10.10 dev.local` to your `/etc/hosts` file (location may vary)
 6. Visit `http://dev.local/` (or your custom `devhost`, if specified) in yo browser.

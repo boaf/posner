@@ -1,3 +1,4 @@
+DEVHOSTNAME=$1
 start_time=`date`
 
 if [ -f /vagrant/setup/initial_provision_run ]

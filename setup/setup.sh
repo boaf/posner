@@ -134,9 +134,9 @@ if [ ! -d /srv/www/wp-admin ]
 then
     printf "Downloading WordPress.....http://wordpress.org\n"
     cd /srv/www
-    curl http://wordpress.org/latest.tar.gz | tar zxf
-    mv wordpress/* .
-    rm -rf latest.tar.gz wordpress
+    curl -sS http://wordpress.org/latest.tar.gz | tar zx
+    mv wordpress/* ./
+    rm -rf wordpress
     cp /srv/config/wordpress-config/wp-config-sample.php /srv/www
     printf "Configuring WordPress...\n"
     wp core config --dbname=wordpress --dbuser=wp --dbpass=wp --quiet
@@ -160,4 +160,4 @@ echo All set!
 echo
 echo You can SQL in via the user \`external\`, no need to SSH tunnel.
 echo
-echo Also, please make sure you have added \`10.10.10.10 $DOMAINS\` to your /etc/hosts file:
+echo Please make sure you have added \`10.10.10.10 $DOMAINS\` to your /etc/hosts file:

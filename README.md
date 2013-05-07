@@ -75,3 +75,34 @@ from VirtualBox (former method preferred).
 Thanks to the folks at 10up, for providing
 [Varying Vagrant Vagrants](https://github.com/10up/varying-vagrant-vagrants)
 (most of which this repo is based on). No copyright infringement intended!
+
+## Final thoughts
+
+The intended workflow with this setup is basically like so:
+
+```bash
+# $ = your local dev machine
+# prod$ = production server
+
+$ git clone git://github.com/boaf/posner.git
+$ cd posner
+$ rm -rf .git* # Kill all pieces of git
+$ vagrant up
+$ cd www/wp-content/themes/kickass-theme
+$ vi index.php # Do work...
+
+# Let's say at this point you're ready to go live
+# Recalling that we're in www/wp-content/kickass-theme
+
+$ git init
+$ git add remote origin master git://your/repo/kickass-theme
+$ git add .
+$ git commit -m "lookit dis kickass theme, aw yisssss"
+$ git push
+
+prod$ cd /var/www/blog/wp-content/themes
+prod$ git clone git://your/repo/kickass-theme
+
+# BAM you're done
+
+```

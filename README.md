@@ -13,7 +13,7 @@ A pretty basic Vagrant box running with the following:
 
 2. `$ git clone https://boaf@bitbucket.org/boaf/posner.git my-sweetass-site`
 
-3. '$ cd my-sweetass-site`
+3. `$ cd my-sweetass-site`
 
 4. `$ vagrant up`
 

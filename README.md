@@ -56,6 +56,12 @@ $ vagrant reload # Vagrant will pull your modified nginx.conf for the server
     * User: *external*
     * Password: *external*
     * Host: *dev.local* (or your defined `devhost`)
+* WP
+    * DB: *wordpress*
+    * User: *wp*
+    * Password: *wp*
+    * Admin User: *admin*
+    * Admin Password: *password*
 
 ## When you're finished for the day
 

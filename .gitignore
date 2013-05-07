@@ -1,0 +1,11 @@
+*.sublime*
+.DS_Store
+
+/.vagrant
+
+/www/*
+
+*.sql
+*.sql.gz
+
+!/setup/database/init.sql

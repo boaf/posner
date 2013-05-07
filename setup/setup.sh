@@ -29,7 +29,7 @@ else
     apt_package_list=(
         php5-fpm
         php5-cli
-        
+
         php5-common
         php5-dev
 
@@ -141,14 +141,14 @@ then
     cp /srv/config/wordpress-config/wp-config-sample.php /srv/www
     printf "Configuring WordPress...\n"
     wp core config --dbname=wordpress --dbuser=wp --dbpass=wp --quiet
-    wp core install --url=dev.local --quiet --title="WordPress Dev" --admin_name=admin --admin_email="admin@dev.local" --admin_password="password"
+    wp core install --url=$DEVHOSTNAME --quiet --title="WordPress Dev" --admin_name=admin --admin_email="admin@$DEVHOSTNAME" --admin_password="password"
 else
     printf "Skip WordPress installation, already available\n"
 fi
 
 # Your host IP is set in Vagrantfile, but it's nice to see the interfaces anyway.
 # Enter domains space delimited
-DOMAINS='dev.local'
+DOMAINS='$DEVHOSTNAME'
 if ! grep -q "$DOMAINS" /etc/hosts
 then echo "127.0.0.1 $DOMAINS" >> /etc/hosts
 fi

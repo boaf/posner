@@ -3,7 +3,9 @@
 
 /.vagrant
 
-/www/*
+/setup/initial_provision_run
+/nginx-logs
+/www
 
 *.sql
 *.sql.gz

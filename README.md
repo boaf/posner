@@ -40,10 +40,11 @@ For an example of how this might be useful
 
 ```bash
 # Scenario: The vagrant is already online and you want to change something in
-# nginx.conf without having to SSH into the vagrant and dig around.
+#           nginx.conf without having to SSH into the vagrant and dig around.
 # Solution: Enter the following in your vagrant's folder (wherever you cloned
-# this repo)
-$ vi setup/config/nginx.conf # Edit something, then save
+#           this repo)
+
+$ vi setup/config/nginx.conf # Edit something, then save; vi not required
 $ vagrant reload # Vagrant will pull your modified nginx.conf for the server
 ```
 
@@ -55,12 +56,6 @@ $ vagrant reload # Vagrant will pull your modified nginx.conf for the server
     * User: *external*
     * Password: *external*
     * Host: *dev.local* (or your defined `devhost`)
-* WP
-    * DB: *wordpress*
-    * User: *wp*
-    * Password: *wp*
-    * Admin User: *admin*
-    * Admin Password: *password*
 
 ## When you're finished for the day
 

@@ -17,8 +17,10 @@ else
     # We need to set the selections to automatically fill the password prompt
     # for mysql while it is being installed. The password in the following two
     # lines *is* actually set to the word 'blank' for the root user.
-    echo mysql-server mysql-server/root_password password blank | debconf-set-selections
-    echo mysql-server mysql-server/root_password_again password blank | debconf-set-selections
+    echo mysql-server mysql-server/root_password password blank |
+         debconf-set-selections
+    echo mysql-server mysql-server/root_password_again password blank |
+         debconf-set-selections
 
     # PACKAGE INSTALLATION
     #
@@ -61,23 +63,30 @@ fi
 printf "\nLink Directories...\n"
 
 # Configuration for nginx
-ln -sf /srv/config/nginx.conf /etc/nginx/nginx.conf | echo "Linked nginx.conf to /etc/nginx/"
+ln -sf /srv/config/nginx.conf /etc/nginx/nginx.conf |
+    echo "Linked nginx.conf to /etc/nginx/"
 
 # Configuration for php5-fpm
-ln -sf /srv/config/php5-fpm-config/www.conf /etc/php5/fpm/pool.d/www.conf | echo "Linked www.conf to /etc/php5/fpm/pool.d/"
-ln -sf /srv/config/php5-fpm-config/php.ini /etc/php5/fpm/php.ini | echo "Linked php.ini to /etc/php5/fpm/"
+ln -sf /srv/config/php5-fpm-config/www.conf /etc/php5/fpm/pool.d/www.conf |
+    echo "Linked www.conf to /etc/php5/fpm/pool.d/"
+ln -sf /srv/config/php5-fpm-config/php.ini /etc/php5/fpm/php.ini |
+    echo "Linked php.ini to /etc/php5/fpm/"
 
 # Configuration for mysql
-cp /srv/config/mysql-config/my.cnf /etc/mysql/my.cnf | echo "Linked my.cnf to /etc/mysql/"
+cp /srv/config/mysql-config/my.cnf /etc/mysql/my.cnf |
+    echo "Linked my.cnf to /etc/mysql/"
 
 # Custom bash_profile for our vagrant user
-ln -sf /srv/config/bash_profile /home/vagrant/.bash_profile | echo "Linked .bash_profile to vagrant user's home directory..."
+ln -sf /srv/config/bash_profile /home/vagrant/.bash_profile |
+    echo "Linked .bash_profile to vagrant user's home directory..."
 
 # Custom bash_aliases included by vagrant user's .bashrc
-ln -sf /srv/config/bash_aliases /home/vagrant/.bash_aliases | echo "Linked .bash_aliases to vagrant user's home directory..."
+ln -sf /srv/config/bash_aliases /home/vagrant/.bash_aliases |
+    echo "Linked .bash_aliases to vagrant user's home directory..."
 
 # Custom vim configuration via .vimrc
-ln -sf /srv/config/vimrc /home/vagrant/.vimrc | echo "Linked vim configuration to home directory..."
+ln -sf /srv/config/vimrc /home/vagrant/.vimrc |
+    echo "Linked vim configuration to home directory..."
 
 # RESTART SERVICES
 #
@@ -100,17 +109,6 @@ else
     printf "\nservice mysql restart"
     service mysql restart
 fi
-
-# # IMPORT SQL
-# #
-# # Create the databases (unique to system) that will be imported with
-# # the mysqldump files located in database/backups/
-# if [ -f /srv/database/init-custom.sql ]
-# then
-#     mysql -u root -pblank < /srv/database/init-custom.sql | printf "\nInitial custom mysql scripting...\n"
-# else
-#     printf "\nNo custom mysql scripting found in database/init-custom.sql, skipping...\n"
-# fi
 
 # Setup mysql by importing an init file that creates necessary
 # users and databases that our vagrant setup relies on.
@@ -140,7 +138,11 @@ then
     cp /srv/config/wordpress-config/wp-config-sample.php /srv/www
     printf "Configuring WordPress...\n"
     wp core config --dbname=wordpress --dbuser=wp --dbpass=wp --quiet
-    wp core install --url="$DEVHOSTNAME" --quiet --title="WordPress Dev" --admin_name=admin --admin_email="admin@$DEVHOSTNAME" --admin_password="password"
+    wp core install --url="$DEVHOSTNAME" --quiet --title="WordPress Dev" \
+                    --admin_name=admin --admin_email="admin@$DEVHOSTNAME" \
+                    --admin_password="password"
+    mysql -uroot -pblank < /srv/database/wp_pub_fix.sql |
+        echo "Made blog private..."
 else
     printf "Skip WordPress installation, already available\n"
 fi

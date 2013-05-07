@@ -10,4 +10,4 @@
 *.sql
 *.sql.gz
 
-!/setup/database/init.sql
+!/setup/database/*.sql

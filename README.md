@@ -11,13 +11,15 @@ A pretty basic Vagrant box running with the following:
 
 1. Install [VirtualBox](https://www.virtualbox.org/wiki/Downloads) and [Vagrant](http://downloads.vagrantup.com).
 
-2. `$ git clone https://boaf@bitbucket.org/boaf/posner.git my-sweetass-site && cd my-sweetass-site`
+2. `$ git clone https://boaf@bitbucket.org/boaf/posner.git my-sweetass-site`
 
-3. `$ vagrant up`
+3. '$ cd my-sweetass-site`
 
-4. Add `10.10.10.10 dev.local` to your `/etc/hosts` file (location may vary)
+4. `$ vagrant up`
 
-5. Visit `http://dev.local/` in yo browser.
+5. Add `10.10.10.10 dev.local` to your `/etc/hosts` file (location may vary)
+
+6. Visit `http://dev.local/` in yo browser.
 
 ## When you're finished for the day
 

@@ -73,8 +73,8 @@ ln -sf /srv/config/php5-fpm-config/php.ini /etc/php5/fpm/php.ini |
     echo "Linked php.ini to /etc/php5/fpm/"
 
 # Configuration for mysql
-cp /srv/config/mysql-config/my.cnf /etc/mysql/my.cnf |
-    echo "Linked my.cnf to /etc/mysql/"
+cp /srv/config/my.cnf /etc/mysql/my.cnf |
+    echo "Copied my.cnf to /etc/mysql/"
 
 # Custom bash_profile for our vagrant user
 ln -sf /srv/config/bash_profile /home/vagrant/.bash_profile |
@@ -135,7 +135,7 @@ then
     curl -sS http://wordpress.org/latest.tar.gz | tar zx
     mv wordpress/* ./
     rm -rf wordpress
-    cp /srv/config/wordpress-config/wp-config-sample.php /srv/www
+    cp /srv/config/wp-config-sample.php /srv/www
     printf "Configuring WordPress...\n"
     wp core config --dbname=wordpress --dbuser=wp --dbpass=wp --quiet
     wp core install --url="$DEVHOSTNAME" --quiet --title="WordPress Dev" \

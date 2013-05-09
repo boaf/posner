@@ -20,10 +20,8 @@ else
     # We need to set the selections to automatically fill the password prompt
     # for mysql while it is being installed. The password in the following two
     # lines *is* actually set to the word 'blank' for the root user.
-    echo mysql-server mysql-server/root_password password blank |
-         debconf-set-selections
-    echo mysql-server mysql-server/root_password_again password blank |
-         debconf-set-selections
+    echo mysql-server mysql-server/root_password password blank | debconf-set-selections
+    echo mysql-server mysql-server/root_password_again password blank | debconf-set-selections
 
     # PACKAGE INSTALLATION
     #
@@ -66,30 +64,23 @@ fi
 printf "\nLink Directories...\n"
 
 # Configuration for nginx
-ln -sf /srv/config/nginx.conf /etc/nginx/nginx.conf |
-    echo "Linked nginx.conf to /etc/nginx/"
+ln -sf /srv/config/nginx.conf /etc/nginx/nginx.conf | echo "Linked nginx.conf to /etc/nginx/"
 
 # Configuration for php5-fpm
-ln -sf /srv/config/php5-fpm-config/www.conf /etc/php5/fpm/pool.d/www.conf |
-    echo "Linked www.conf to /etc/php5/fpm/pool.d/"
-ln -sf /srv/config/php5-fpm-config/php.ini /etc/php5/fpm/php.ini |
-    echo "Linked php.ini to /etc/php5/fpm/"
+ln -sf /srv/config/php5-fpm-config/www.conf /etc/php5/fpm/pool.d/www.conf | echo "Linked www.conf to /etc/php5/fpm/pool.d/"
+ln -sf /srv/config/php5-fpm-config/php.ini /etc/php5/fpm/php.ini | echo "Linked php.ini to /etc/php5/fpm/"
 
 # Configuration for mysql
-cp /srv/config/my.cnf /etc/mysql/my.cnf |
-    echo "Copied my.cnf to /etc/mysql/"
+cp /srv/config/my.cnf /etc/mysql/my.cnf | echo "Copied my.cnf to /etc/mysql/"
 
 # Custom bash_profile for our vagrant user
-ln -sf /srv/config/bash_profile /home/vagrant/.bash_profile |
-    echo "Linked .bash_profile to vagrant user's home directory..."
+ln -sf /srv/config/bash_profile /home/vagrant/.bash_profile | echo "Linked .bash_profile to vagrant user's home directory..."
 
 # Custom bash_aliases included by vagrant user's .bashrc
-ln -sf /srv/config/bash_aliases /home/vagrant/.bash_aliases |
-    echo "Linked .bash_aliases to vagrant user's home directory..."
+ln -sf /srv/config/bash_aliases /home/vagrant/.bash_aliases | echo "Linked .bash_aliases to vagrant user's home directory..."
 
 # Custom vim configuration via .vimrc
-ln -sf /srv/config/vimrc /home/vagrant/.vimrc |
-    echo "Linked vim configuration to home directory..."
+ln -sf /srv/config/vimrc /home/vagrant/.vimrc | echo "Linked vim configuration to home directory..."
 
 # RESTART SERVICES
 #
@@ -141,11 +132,8 @@ then
     cp /srv/config/wp-config-sample.php /srv/www
     printf "Configuring WordPress...\n"
     wp core config --dbname=wp --dbuser=wp --dbpass=wp --quiet
-    wp core install --url="$DEV_HOST" --quiet --title="WordPress Dev" \
-                    --admin_name=wp --admin_email="admin@$DEV_HOST" \
-                    --admin_password="wp"
-    mysql -uroot -pblank < /srv/database/wp_pub_fix.sql |
-        echo "Made blog private..."
+    wp core install --url="$DEV_HOST" --quiet --title="WordPress Dev" --admin_name=wp --admin_email="admin@$DEV_HOST" --admin_password="wp"
+    mysql -uroot -pblank < /srv/database/wp_pub_fix.sql | echo "Made blog private..."
 else
     printf "Skip WordPress installation, already available\n"
 fi
@@ -153,8 +141,7 @@ fi
 if [ ! -d /srv/www/wp-content/themes/$WP_THEME_NAME ]
 then
     printf "Downloading Roots.....http://rootstheme.com\n"
-    git clone git://github.com/retlehs/roots.git
-        /srv/www/wp-content/themes/$WP_THEME_NAME
+    git clone git://github.com/retlehs/roots.git /srv/www/wp-content/themes/$WP_THEME_NAME
     cd /srv/www/wp-content/themes/$WP_THEME_NAME
 else
     printf "Skipping Roots install, already available or directory not unique\n"

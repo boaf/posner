@@ -62,18 +62,18 @@ The following sets of paths are for convenience:
 
 ### MySQL
 * Within the Vagrant box
-    * User: *root*
-    * Password: *blank* (as in the word)
+    * User: **root**
+    * Password: **blank** (as in the word)
 * Externally, without an SSH tunnel
-    * User: *external*
-    * Password: *external*
-    * Host: *dev.local* (or your defined `devhost`)
+    * User: **external**
+    * Password: **external**
+    * Host: **dev.local**
 * WP
-    * DB: *wp*
-    * User: *wp*
-    * Password: *wp*
-    * Admin User: *wp*
-    * Admin Password: *wp* _(yes, everything is "wp")_
+    * DB: **wp**
+    * User: **wp**
+    * Password: **wp**
+    * Admin User: **wp**
+    * Admin Password: **wp** _(yes, everything is "wp")_
 
 ## When you're finished for the day
 

@@ -1,4 +1,7 @@
-DEVHOSTNAME=$1
+DEV_HOST=$1
+DEV_IP=$2
+WP_THEME_NAME=$3
+
 start_time=`date`
 
 if [ -f /vagrant/setup/initial_provision_run ]
@@ -137,19 +140,29 @@ then
     rm -rf wordpress
     cp /srv/config/wp-config-sample.php /srv/www
     printf "Configuring WordPress...\n"
-    wp core config --dbname=wordpress --dbuser=wp --dbpass=wp --quiet
-    wp core install --url="$DEVHOSTNAME" --quiet --title="WordPress Dev" \
-                    --admin_name=admin --admin_email="admin@$DEVHOSTNAME" \
-                    --admin_password="password"
+    wp core config --dbname=wp --dbuser=wp --dbpass=wp --quiet
+    wp core install --url="$DEV_HOST" --quiet --title="WordPress Dev" \
+                    --admin_name=wp --admin_email="admin@$DEV_HOST" \
+                    --admin_password="wp"
     mysql -uroot -pblank < /srv/database/wp_pub_fix.sql |
         echo "Made blog private..."
 else
     printf "Skip WordPress installation, already available\n"
 fi
 
+if [ ! -d /srv/www/wp-content/themes/$WP_THEME_NAME ]
+then
+    printf "Downloading Roots.....http://rootstheme.com\n"
+    git clone git://github.com/retlehs/roots.git
+        /srv/www/wp-content/themes/$WP_THEME_NAME
+    cd /srv/www/wp-content/themes/$WP_THEME_NAME
+else
+    printf "Skipping Roots install, already available or directory not unique\n"
+fi
+
 # Your host IP is set in Vagrantfile, but it's nice to see the interfaces anyway.
 # Enter domains space delimited
-DOMAINS="$DEVHOSTNAME"
+DOMAINS="$DEV_HOST"
 if ! grep -q "$DOMAINS" /etc/hosts
 then echo "127.0.0.1 $DOMAINS" >> /etc/hosts
 fi
@@ -158,8 +171,5 @@ fi
 ifconfig | grep "inet addr"
 echo $start_time
 date
-echo All set!
-echo
-echo You can SQL in via the user \`external\`, no need to SSH tunnel.
-echo
-echo Please make sure you have added \`10.10.10.10 $DOMAINS\` to your /etc/hosts file:
+printf "\nAll done!\n"
+printf "Be sure to add \`$DEV_IP $DEV_HOST\` to your /etc/hosts\n\n"

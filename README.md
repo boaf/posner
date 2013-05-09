@@ -8,45 +8,57 @@ A pretty basic Vagrant box running the following:
     * MySQL
     * PHP
 * WordPress
-
-In addition, the following features are planned (Soon&trade;):
-* [HTML5 Boilerplate](http://html5boilerplate.com/)
-* [Roots Theme](http://rootstheme.com)
+    * [Roots Theme](http://rootstheme.com)
+    * [HTML5 Boilerplate](http://html5boilerplate.com/)
 
 ## Let's get started
 
 1. Install [VirtualBox](https://www.virtualbox.org/wiki/Downloads) and
     [Vagrant](http://downloads.vagrantup.com/).
-2. `git clone git://github.com/boaf/posner.git new-wp-project`
-3. `cd new-wp-project`
-4. _(optional)_ Modify `devhost` at the top of `Vagrantfile` for a custom hostname
-5. `vagrant up`
-6. Add `10.10.10.10 dev.local` to your `/etc/hosts` file (location may vary)
-7. Visit `http://dev.local/` (or your custom `devhost`) in yo browser.
+2. `git clone git://github.com/boaf/posner.git && cd posner`
+3. `vagrant up`
+4. Add `10.10.10.10 dev.local` to `/etc/hosts`
+5. Visit `http://dev.local/` in yo browser to make sure everything works
+
+To start developing a theme, Activate the Roots theme in Wordpress.
+
+## Configuration
+
+There isn't much, but these are available at the top of `Vagrantfile` for your
+enjoyment.
+
+<table>
+    <tr>
+        <th>Name</th><th>Default</th><th>?</th>
+    </tr>
+    <tr>
+        <td>`dev_host`</td>
+        <td>`dev.local`</td>
+        <td>Local-accessible URL<br>Must be entered in `/etc/hosts`</td>
+    </tr>
+    <tr>
+        <td>`dev_ip`</td>
+        <td>`10.10.10.10`</td>
+        <td>Local-accessible IP address</td>
+    </tr>
+    <tr>
+        <td>`wp_theme_name`</td>
+        <td>`roots`</td>
+        <td>Theme dir name<br>i.e. `wp-content/themes/roots`</td>
+    </tr>
+</table>
+
+In addition, Roots provides a number of configuration options. See
+[Roots' documentation](https://github.com/retlehs/roots/blob/master/doc/TOC.md)
+for more details.
 
 ## Some things
-
-Posner will set up an IP address of `10.10.10.10`. If you need to change this,
-do so in the `Vagrantfile` and ensure you've got your hosts file set up with the
-new IP as well.
 
 The following sets of paths are for convenience:
 * `setup/database/` .. maps to .. `/srv/database/`
 * `setup/config/` » `/srv/config/`
 * `nginx-logs/` » `/srv/logs/`
 * `www/` » `/srv/www/`
-
-For an example of how this might be useful
-
-```bash
-# Scenario: The vagrant is already online and you want to change something in
-#           nginx.conf without having to SSH into the vagrant and dig around.
-# Solution: Enter the following in your vagrant's folder (wherever you cloned
-#           this repo)
-
-$ vi setup/config/nginx.conf # Edit something, then save; vi not required
-$ vagrant reload # Vagrant will pull your modified nginx.conf for the server
-```
 
 ### MySQL
 * Within the Vagrant box
@@ -57,11 +69,11 @@ $ vagrant reload # Vagrant will pull your modified nginx.conf for the server
     * Password: *external*
     * Host: *dev.local* (or your defined `devhost`)
 * WP
-    * DB: *wordpress*
+    * DB: *wp*
     * User: *wp*
     * Password: *wp*
-    * Admin User: *admin*
-    * Admin Password: *password*
+    * Admin User: *wp*
+    * Admin Password: *wp* _(yes, everything is "wp")_
 
 ## When you're finished for the day
 

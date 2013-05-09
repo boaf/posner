@@ -39,7 +39,7 @@ enjoyment.
     <tr>
         <td>`dev_ip`</td>
         <td>`10.10.10.10`</td>
-        <td>Local-accessible IP address</td>
+        <td>Local-accessible IP address<br>Good Idea&trade; to change this and `dev_host` if running multiple Vagrants</td>
     </tr>
     <tr>
         <td>`wp_theme_name`</td>

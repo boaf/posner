@@ -106,10 +106,10 @@ mysql -u root -pblank < /srv/database/init.sql
 if [ ! -d /srv/www/wp-cli ]
 then
     echo "Installing wp-cli"
-    git clone git://github.com/wp-cli/wp-cli.git /srv/www/wp-cli
+    git clone git://github.com/wp-cli/wp-cli.git /srv/www/wp-cli > /dev/null
     cd /srv/www/wp-cli
-    curl -sS https://getcomposer.org/installer | php
-    php composer.phar install
+    curl -sS https://getcomposer.org/installer | php > /dev/null
+    php composer.phar install > /dev/null
 fi
 # Link wp to the /usr/local/bin directory
 ln -sf /srv/www/wp-cli/bin/wp /usr/local/bin/wp
@@ -127,14 +127,14 @@ then
     mysql -uroot -pblank < /srv/database/wp_pub_fix.sql
 
     echo "Installing Debug Bar"
-    wp plugin install debug-bar --activate
+    wp plugin install debug-bar --activate > /dev/null
 
     echo "Installing Debug Bar Console"
-    wp plugin install debug-bar-console --activate
+    wp plugin install debug-bar-console --activate > /dev/null
 
     echo "Installing Bones"
-    git clone git://github.com/eddiemachado/bones.git /srv/www/wp-content/themes/$WP_THEME_NAME
-    wp theme activate $WP_THEME_NAME
+    git clone git://github.com/eddiemachado/bones.git /srv/www/wp-content/themes/$WP_THEME_NAME > /dev/null
+    wp theme activate $WP_THEME_NAME > /dev/null
 fi
 
 # Your host IP is set in Vagrantfile, but it's nice to see the interfaces anyway.

@@ -12,8 +12,8 @@ else
     cat /srv/config/apt-source-append.list >> /etc/apt/sources.list
 
     # update all of the package references before installing anything
-    printf "Running apt-get update....\n\n"
-    apt-get update --force-yes -y
+    printf "Updating apt-get\n\n"
+    apt-get update --force-yes -y > /dev/null
 
     # MYSQL
     #
@@ -51,17 +51,14 @@ else
         dos2unix
     )
 
-    printf "Install all apt-get packages...\n"
-    apt-get install --force-yes -y ${apt_package_list[@]}
+    echo "Install apt-get packages needed for Posner..."
+    apt-get install --force-yes -y ${apt_package_list[@]} > /dev/null
 
     # Clean up apt caches
     apt-get clean
 
     touch /vagrant/setup/initial_provision_run
 fi
-
-# SYMLINK HOST FILES
-printf "\nLink Directories...\n"
 
 # Configuration for nginx
 ln -sf /srv/config/nginx.conf /etc/nginx/nginx.conf | echo "Linked nginx.conf to /etc/nginx/"
@@ -85,10 +82,8 @@ ln -sf /srv/config/vimrc /home/vagrant/.vimrc | echo "Linked vim configuration t
 # RESTART SERVICES
 #
 # Make sure the services we expect to be running are running.
-printf "\nRestart services...\n"
-printf "\nservice nginx restart\n"
+printf "\nRestarting services\n"
 service nginx restart
-printf "\nservice php5-fpm restart\n"
 service php5-fpm restart
 
 # mysql gives us an error if we restart a non running service, which
@@ -97,53 +92,49 @@ service php5-fpm restart
 exists_mysql=`service mysql status`
 if [ "mysql stop/waiting" == "$exists_mysql" ]
 then
-    printf "\nservice mysql start"
     service mysql start
 else
-    printf "\nservice mysql restart"
     service mysql restart
 fi
 
 # Setup mysql by importing an init file that creates necessary
 # users and databases that our vagrant setup relies on.
-mysql -u root -pblank < /srv/database/init.sql | echo "Initial mysql prep...."
+echo "Initializing MySQL"
+mysql -u root -pblank < /srv/database/init.sql
 
 # WP-CLI Install
 if [ ! -d /srv/www/wp-cli ]
 then
-    printf "\nDownloading wp-cli.....http://wp-cli.org\n"
+    echo "Installing wp-cli"
     git clone git://github.com/wp-cli/wp-cli.git /srv/www/wp-cli
     cd /srv/www/wp-cli
     curl -sS https://getcomposer.org/installer | php
     php composer.phar install
-else
-    printf "\nSkip wp-cli installation, already available\n"
 fi
 # Link wp to the /usr/local/bin directory
 ln -sf /srv/www/wp-cli/bin/wp /usr/local/bin/wp
 
 if [ ! -d /srv/www/wp-admin ]
 then
-    printf "Installing Wordpress\n"
+    echo "Installing Wordpress"
     cd /srv/www
     curl -sS http://wordpress.org/latest.tar.gz | tar zx
     mv wordpress/* ./
     rm -rf wordpress
     cp /srv/config/wp-config-sample.php /srv/www
-    printf "Configuring WordPress...\n"
     wp core config --dbname=wp --dbuser=wp --dbpass=wp --quiet
     wp core install --url="$DEV_HOST" --quiet --title="WordPress Dev" --admin_name=wp --admin_email="admin@$DEV_HOST" --admin_password="wp"
-    mysql -uroot -pblank < /srv/database/wp_pub_fix.sql | echo "Made blog private..."
+    mysql -uroot -pblank < /srv/database/wp_pub_fix.sql
 
-    printf "Installing Debug Bar\n"
+    echo "Installing Debug Bar"
     wp plugin install debug-bar --activate
 
-    printf "Installing Debug Bar Console\n"
+    echo "Installing Debug Bar Console"
     wp plugin install debug-bar-console --activate
 
-    printf "Installing ... HAHA just kidding\n"
-else
-    printf "Skip WordPress installation, already available\n"
+    echo "Installing Bones"
+    git clone git://github.com/eddiemachado/bones.git /srv/www/wp-content/themes/$WP_THEME_NAME
+    wp theme activate $WP_THEME_NAME
 fi
 
 # Your host IP is set in Vagrantfile, but it's nice to see the interfaces anyway.

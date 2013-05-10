@@ -8,6 +8,7 @@ A pretty basic Vagrant box running the following:
     * MySQL
     * PHP
 * WordPress
+    * [Bones](https://github.com/eddiemachado/bones)
     * Debug Bar (w/ Debug Bar Console)
 
 
@@ -22,8 +23,7 @@ A pretty basic Vagrant box running the following:
 
 ## Configuration
 
-There isn't much, but these are available at the top of `Vagrantfile` for your
-enjoyment.
+There isn't much, but available within `Vagrantfile` are...
 
 <table>
     <tr>
@@ -48,11 +48,20 @@ enjoyment.
 
 ## Some things
 
-The following sets of paths are for convenience:
-* `setup/database/` .. maps to .. `/srv/database/`
-* `setup/config/` » `/srv/config/`
-* `nginx-logs/` » `/srv/logs/`
-* `www/` » `/srv/www/`
+The WordPress installation by default will be in **private mode**. That is to
+say that the option `Discourage search engines from indexing this site` within
+Settings › Reading is checked.
+
+The following paths are linked between your local machine and the vagrant for
+convenience:
+
+<table>
+    <tr><th>Local path</th><th>Vagrant path</th></tr>
+    <tr><td>`setup/database/`</td><td>`/srv/database/`</td></tr>
+    <tr><td>`setup/config/`</td><td>`/srv/config/`</td></tr>
+    <tr><td>`nginx-logs/`</td><td>`/srv/logs/`</td></tr>
+    <tr><td>`www/`</td><td>`/srv/www/`</td></tr>
+</table>
 
 ### MySQL
 * Within the Vagrant box
@@ -107,13 +116,13 @@ $ vi index.php # Do work...
 # Recalling that we're in www/wp-content/kickass-theme
 
 $ git init
-$ git add remote origin master git://your/repo/kickass-theme
+$ git add remote origin master repo://to/your/kickass-theme
 $ git add .
 $ git commit -m "lookit dis kickass theme, aw yisssss"
 $ git push
 
 prod$ cd /var/www/blog/wp-content/themes
-prod$ git clone git://your/repo/kickass-theme
+prod$ git clone repo://to/your/kickass-theme
 
 # BAM you're done
 

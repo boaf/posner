@@ -30,19 +30,19 @@ There isn't much, but available within `Vagrantfile` are...
         <th>Name</th><th>Default</th><th>?</th>
     </tr>
     <tr>
-        <td>`dev_host`</td>
-        <td>`dev.local`</td>
-        <td>Local-accessible URL<br>Must be entered in `/etc/hosts`</td>
+        <td>dev_host</td>
+        <td>dev.local</td>
+        <td>Local-accessible URL<br>Must be entered in /etc/hosts</td>
     </tr>
     <tr>
-        <td>`dev_ip`</td>
-        <td>`10.10.10.10`</td>
-        <td>Local-accessible IP address<br>Good Idea&trade; to change this and `dev_host` if running multiple Vagrants</td>
+        <td>dev_ip</td>
+        <td>10.10.10.10</td>
+        <td>Local-accessible IP address<br>Good Idea&trade; to change this and dev_host if running multiple Vagrants</td>
     </tr>
     <tr>
-        <td>`wp_theme_name`</td>
-        <td>`wpdev`</td>
-        <td>Theme dir name<br>i.e. `wp-content/themes/wpdev`</td>
+        <td>wp_theme_name</td>
+        <td>wpdev</td>
+        <td>Theme dir name<br>i.e. wp-content/themes/wpdev</td>
     </tr>
 </table>
 
@@ -57,10 +57,10 @@ convenience:
 
 <table>
     <tr><th>Local path</th><th>Vagrant path</th></tr>
-    <tr><td>`setup/database/`</td><td>`/srv/database/`</td></tr>
-    <tr><td>`setup/config/`</td><td>`/srv/config/`</td></tr>
-    <tr><td>`nginx-logs/`</td><td>`/srv/logs/`</td></tr>
-    <tr><td>`www/`</td><td>`/srv/www/`</td></tr>
+    <tr><td>setup/database/</td><td>/srv/database/</td></tr>
+    <tr><td>setup/config/</td><td>/srv/config/</td></tr>
+    <tr><td>nginx-logs/</td><td>/srv/logs/</td></tr>
+    <tr><td>www/</td><td>/srv/www/</td></tr>
 </table>
 
 ### MySQL

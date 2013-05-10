@@ -124,7 +124,7 @@ ln -sf /srv/www/wp-cli/bin/wp /usr/local/bin/wp
 
 if [ ! -d /srv/www/wp-admin ]
 then
-    printf "Downloading WordPress.....http://wordpress.org\n"
+    printf "Installing Wordpress\n"
     cd /srv/www
     curl -sS http://wordpress.org/latest.tar.gz | tar zx
     mv wordpress/* ./
@@ -134,17 +134,16 @@ then
     wp core config --dbname=wp --dbuser=wp --dbpass=wp --quiet
     wp core install --url="$DEV_HOST" --quiet --title="WordPress Dev" --admin_name=wp --admin_email="admin@$DEV_HOST" --admin_password="wp"
     mysql -uroot -pblank < /srv/database/wp_pub_fix.sql | echo "Made blog private..."
+
+    printf "Installing Debug Bar\n"
+    wp plugin install debug-bar --activate
+
+    printf "Installing Debug Bar Console\n"
+    wp plugin install debug-bar-console --activate
+
+    printf "Installing ... HAHA just kidding\n"
 else
     printf "Skip WordPress installation, already available\n"
-fi
-
-if [ ! -d /srv/www/wp-content/themes/$WP_THEME_NAME ]
-then
-    printf "Downloading Roots.....http://rootstheme.com\n"
-    git clone git://github.com/retlehs/roots.git /srv/www/wp-content/themes/$WP_THEME_NAME
-    cd /srv/www/wp-content/themes/$WP_THEME_NAME
-else
-    printf "Skipping Roots install, already available or directory not unique\n"
 fi
 
 # Your host IP is set in Vagrantfile, but it's nice to see the interfaces anyway.

@@ -1,6 +1,6 @@
 dev_host = 'dev.local'
 dev_ip = '10.10.10.10'
-wp_theme_name = 'roots'
+wp_theme_name = 'wpdev'
 
 dir = Dir.pwd
 

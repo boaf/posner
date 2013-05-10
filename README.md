@@ -8,8 +8,8 @@ A pretty basic Vagrant box running the following:
     * MySQL
     * PHP
 * WordPress
-    * [Roots Theme](http://rootstheme.com)
-    * [HTML5 Boilerplate](http://html5boilerplate.com/)
+    * Debug Bar (w/ Debug Bar Console)
+
 
 ## Let's get started
 
@@ -19,8 +19,6 @@ A pretty basic Vagrant box running the following:
 3. `vagrant up`
 4. Add `10.10.10.10 dev.local` to `/etc/hosts`
 5. Visit `http://dev.local/` in yo browser to make sure everything works
-
-To start developing a theme, Activate the Roots theme in Wordpress.
 
 ## Configuration
 
@@ -43,14 +41,10 @@ enjoyment.
     </tr>
     <tr>
         <td>`wp_theme_name`</td>
-        <td>`roots`</td>
-        <td>Theme dir name<br>i.e. `wp-content/themes/roots`</td>
+        <td>`wpdev`</td>
+        <td>Theme dir name<br>i.e. `wp-content/themes/wpdev`</td>
     </tr>
 </table>
-
-In addition, Roots provides a number of configuration options. See
-[Roots' documentation](https://github.com/retlehs/roots/blob/master/doc/TOC.md)
-for more details.
 
 ## Some things
 
